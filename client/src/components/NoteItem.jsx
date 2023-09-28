@@ -1,23 +1,29 @@
-import React, { useContext,useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import noteContext from '../context/noteContext'
 
-const NoteItem = ({note,viewModal,editModal,notify}) => {
-    const {deleteNote} = useContext(noteContext)
+const NoteItem = ({ note, viewModal, editModal, notify }) => {
+    const { deleteNote } = useContext(noteContext)
 
-    const handleDelete = (e)=>{
+    const handleDelete = (e) => {
         e.stopPropagation()
         deleteNote(note._id)
-        notify("Note Deleted","top-center",1500)
+        notify("Note Deleted", "top-center", 1500)
     }
-    const handleEdit = (e)=>{
+    const handleEdit = (e) => {
         e.stopPropagation()
-        editModal(note)   
+        editModal(note)
+    }
+    const handlePin = () =>{
+        
     }
 
     return (
-        <div  className="card m-2" style={{ width: "18rem" }}>
-            <div className="card-body" role='button' onClick={()=>viewModal(note)}>
-                <h2 className="card-title"  >{note.title}</h2>
+        <div className="card m-2" style={{ width: "18rem" }}>
+            <div className="card-body" role='button' onClick={() => viewModal(note)}>
+                <div>
+                    <h2 className="card-title"  >{note.title}</h2>
+                    <i className="fa-sharp fa-solid fa-thumbtack" onClick={handlePin}></i>
+                </div>
                 <p className="card-text">{note.description}</p>
                 <p>Tag:{note.tag}</p>
                 <i className="fa-sharp fa-solid fa-trash mx-2" onClick={handleDelete}></i>
