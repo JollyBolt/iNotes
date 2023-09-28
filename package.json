@@ -1,0 +1,15 @@
+{
+  "name": "inotebook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": "Your notebook on the cloud.",
+  "scripts": {
+    "both":"concurrently \"npm --prefix ./client/ run dev\" \"npx nodemon server/index.js\" "
+  },
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "devDependencies": {}
+}
