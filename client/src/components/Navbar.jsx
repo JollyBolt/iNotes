@@ -9,7 +9,7 @@ const Navbar = () => {
   }
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top tw-h-[4rem]">
+      {/* <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top h-[4rem] shadow-sm z-50">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">iNotes</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@ const Navbar = () => {
             
           </div>
         </div>
-      </nav>
+      </nav> */}
     </>
   )
 }

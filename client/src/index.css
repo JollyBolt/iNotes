@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    box-sizing: border-box;
+}
+
 i{
     cursor: pointer;
+}
+
+@layer components{
+    .btn{
+        @apply
+        bg-blue-600 text-white rounded-md text-xl p-[0.7rem] hover:bg-white hover:text-blue-600 hover:ring-blue-600 hover:ring-1
+    }
 }

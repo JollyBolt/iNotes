@@ -38,7 +38,7 @@ const SignUp = ({notify}) => {
   return (
     <>
     <Navbar/>
-    <div className='container signup w-50 my-5'>
+    {/* <div className='container signup w-50 my-5'>
     <p>Sign Up</p>
       <form>
         <div className="mb-3">
@@ -57,7 +57,7 @@ const SignUp = ({notify}) => {
         </div>
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
       </form>
-    </div>
+    </div> */}
     </>
   )
 }

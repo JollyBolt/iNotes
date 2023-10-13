@@ -60,12 +60,13 @@ const NoteState = (props) => {
 
 
   //edit a note
-  const editNote = async (id, title, description, tag) => {
+  const editNote = async (id, title, description, tag, pinned) => {
     try {
       await axios.put(`http://localhost:4000/api/notes/updatenote/${id}`,{
         "title":title,
         "description":description,
-        "tag":tag
+        "tag":tag,
+        "pinned":pinned
       },
       {
         headers:{
@@ -81,7 +82,7 @@ const NoteState = (props) => {
   }
 
   return (
-    <noteContext.Provider value={{ notes, addNote, deleteNote, editNote,getAllNotes }}>
+    <noteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote,getAllNotes }}>
       {props.children}
     </noteContext.Provider>
   )
