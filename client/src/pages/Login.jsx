@@ -19,7 +19,7 @@ const Login = ({notify}) => {
     e.preventDefault();
     
     try {
-      const {data} = await axios.post('http://localhost:4000/api/auth/login',{
+      const {data} = await axios.post(`${import.meta.env.VITE_URL}/api/auth/login`,{
         "email":formState.email,
         "password":formState.password
       },{
@@ -41,7 +41,7 @@ const Login = ({notify}) => {
   return (
     <>
     <Navbar/>
-    {/* <div className='container signup w-50 my-5'>
+    <div className='container signup w-50 my-5'>
     <p>Log In</p>
       <form>
         <div className="mb-3">
@@ -55,7 +55,7 @@ const Login = ({notify}) => {
         </div>
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
       </form>
-    </div> */}
+    </div>
     </>
   )
 }

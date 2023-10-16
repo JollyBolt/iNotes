@@ -13,7 +13,6 @@ const EditModal = ({modalProp,editNote,notify}) => {
     const handleSubmit = () =>{
         editNote(note._id,note.title,note.description,note.tag)
         notify("Note Updated","top-center",1500)
-
     }    
     return (
         <div className="modal fade" id="editModal" tabIndex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

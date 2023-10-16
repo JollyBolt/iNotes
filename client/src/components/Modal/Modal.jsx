@@ -2,35 +2,37 @@ import React, { useState, useContext } from 'react'
 import noteContext from '../../context/noteContext'
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 
 
-const AddModal = ({ open, setOpen }) => {
-    const { addNote, notify } = useContext(noteContext);
-    const [newNote, setNewNote] = useState({ title: "", description: "", tag: "personal" })
-    // const [open, setOpen] = useState(false)
-    const [pinned, setPinned] = useState(false)
+const Modal = ({ note, open, setOpen }) => {
+    const { editNote,deleteNote, notify } = useContext(noteContext);
+    const [newNote, setNewNote] = useState({ ...note })
 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(newNote)
         setNewNote({
             ...newNote,
             [name]: value
         })
     }
 
-    const onClose = () => {
-        setOpen(curr => !curr)
-        setPinned(false)
+    const handleDelete = (e) => {
+        e.stopPropagation()
+        deleteNote(note._id)
+        notify("Note Deleted", "bottom-right", 1500)
+        setOpen(false)
     }
-    const handleSubmit = (e) => {
+
+    const onClose = (e) => {
         e.preventDefault()
-        // console.log(newNote.title, newNote.description, newNote.tag, pinned)
-        addNote(newNote.title, newNote.description, newNote.tag, pinned)
-        setNewNote({ title: "", description: "", tag: "personal" })
-        setPinned(false)
-        notify("Note Added", "top-center", 1500);
+        if(JSON.stringify(note)!==JSON.stringify(newNote))
+        {
+            editNote(note._id,newNote.title, newNote.description, newNote.tag, newNote.pinned)
+        }
         setOpen(false)
     };
 
@@ -49,8 +51,9 @@ const AddModal = ({ open, setOpen }) => {
                             value={newNote.title}
                             onChange={handleChange}
                         />
-                        <button onClick={() => setPinned(curr => !curr)} className='bg-gray-100 p-1 rounded-md  hover:bg-gray-300 transition-all'>{
-                            pinned
+                        <button onClick={() => {console.log(newNote)
+                         setNewNote((newNote)=>({...newNote,pinned:!newNote.pinned}))}} className='bg-gray-100 p-1 rounded-md  hover:bg-gray-300 transition-all'>{
+                            newNote.pinned
                                 ? <PushPinIcon />
                                 : <PushPinOutlinedIcon />
                         }</button>
@@ -66,23 +69,22 @@ const AddModal = ({ open, setOpen }) => {
                     ></textarea>
                     <div className='flex gap-10 justify-center'>
                         <div>
-                            <input type="radio" name="tag" id="personal" className='mx-1' onChange={handleChange} value="personal" />
+                            <input type="radio" name="tag" id="personal" className='mx-1' onChange={handleChange} value="personal" checked={note.tag==="personal"}/>
                             <label htmlFor="personal">Personal</label>
                         </div>
                         <div>
-                            <input type="radio" name="tag" id="work" className='mx-1' onChange={handleChange} value="work" />
+                            <input type="radio" name="tag" id="work" className='mx-1' onChange={handleChange} value="work" checked={note.tag==="work"}/>
                             <label htmlFor="work">Work</label>
                         </div>
                     </div>
                 </div>
                 <div className='flex justify-between items-center'>
-                    {/* <button className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'><DeleteOutlinedIcon /></button> */}
+                    <button onClick={handleDelete} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'><DeleteOutlinedIcon /></button>
                     <button onClick={onClose} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'>Close</button>
-                    <button onClick={handleSubmit} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'>Add Note</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default AddModal
+export default Modal

@@ -27,9 +27,9 @@ router.post("/addnote",fetchuser,
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      const { title, description, tag } = req.body;
+      const { title, description, tag, pinned } = req.body;
 
-      const note = new Notes({ title, description, tag, user: req.user.id });
+      const note = new Notes({ title, description, tag, pinned, user: req.user.id });
       const savedNote = await note.save();
       res.send(savedNote);
     } catch (error) {

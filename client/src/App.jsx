@@ -1,31 +1,42 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
-import About from './pages/About'
 import NoteState from './context/noteState'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-const App = () => {
+import { ToastContainer } from 'react-toastify';
+import Settings from './pages/Settings'
+import RootLayout from './layouts/RootLayout'
+import PersonalNotes from './components/PersonalNotes'
+import WorkNotes from './components/WorkNotes'
+import AllNotes from './components/AllNotes'
 
-  const notify = (msg,position,autoClose) => {
-    toast.success(msg,{
-    position: position,
-    autoClose: 1000,
-    theme:document.documentElement.getAttribute('data-bs-theme')
-})};
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path='/' element={<RootLayout />}>
+        <Route path='/' element={<Home />}>
+          <Route path='/' element={<AllNotes />}></Route>
+          <Route path='/personal' element={<PersonalNotes />}></Route>
+          <Route path='/work' element={<WorkNotes />}></Route>
+        </Route>
+        <Route path='/settings' element={<Settings />}></Route>
+      </Route>
+      <Route path='/signup' element={<SignUp />}></Route>
+      <Route path='/login' element={<Login  />}></Route>
+    </>
+  )
+)
+
+const App = () => {
   return (
     <>
       <NoteState>
-        <Routes>
-          <Route path='/' element={<Home notify={notify}/>}></Route>
-          <Route path='/about' element={<About />}></Route>        
-          <Route path='/signup' element={<SignUp notify={notify}/>}></Route>
-          <Route path='/login' element={<Login notify={notify}/>}></Route>
-        </Routes>
+        <RouterProvider router={router}/>
       </NoteState>
-      <ToastContainer/> 
+      <ToastContainer />
     </>
   )
 }
