@@ -3,14 +3,10 @@ import noteContext from '../../context/noteContext'
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 
-
-
 const AddModal = ({ open, setOpen }) => {
     const { addNote, notify } = useContext(noteContext);
     const [newNote, setNewNote] = useState({ title: "", description: "", tag: "personal" })
-    // const [open, setOpen] = useState(false)
     const [pinned, setPinned] = useState(false)
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,7 +22,6 @@ const AddModal = ({ open, setOpen }) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log(newNote.title, newNote.description, newNote.tag, pinned)
         addNote(newNote.title, newNote.description, newNote.tag, pinned)
         setNewNote({ title: "", description: "", tag: "personal" })
         setPinned(false)
@@ -35,21 +30,21 @@ const AddModal = ({ open, setOpen }) => {
     };
 
     return (
-        <div onClick={onClose} className={`fixed inset-0 flex justify-center items-center transition-colors z-[100] ${open ? "bg-black/40" : "invisible"}`}>
+        <div onClick={onClose} className={`fixed inset-0 flex justify-center  items-center transition-colors z-[100] ${open ? "bg-black/60" : "invisible"}`}>
             <div
                 onClick={e => e.stopPropagation()}
-                className={`bg-white rounded-xl shadow transition-all min-w-[50%] p-6 ${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`} >
+                className={`bg-white dark:bg-black rounded-xl dark:border-white dark:border-2 shadow transition-all min-w-[50%] p-6 ${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`} >
                 <div className='flex flex-col p-3'>
                     <div className='flex items-center justify-between mb-3'>
                         <input
                             type="text"
                             name='title'
                             placeholder='Title...'
-                            className='focus:outline-none p-1 text-2xl'
+                            className='focus:outline-none p-1 text-2xl dark:bg-black w-full ml-2'
                             value={newNote.title}
                             onChange={handleChange}
                         />
-                        <button onClick={() => setPinned(curr => !curr)} className='bg-gray-100 p-1 rounded-md  hover:bg-gray-300 transition-all'>{
+                        <button onClick={() => setPinned(curr => !curr)} className='bg-gray-100 p-1 rounded-md  hover:bg-gray-300 transition-all dark:bg-black dark:hover:bg-gray-900'>{
                             pinned
                                 ? <PushPinIcon />
                                 : <PushPinOutlinedIcon />
@@ -60,7 +55,7 @@ const AddModal = ({ open, setOpen }) => {
                         id="" cols="30"
                         rows="10"
                         placeholder='Take a note...'
-                        className='p-1 focus:outline-none'
+                        className='p-1 focus:outline-none dark:bg-black'
                         value={newNote.description}
                         onChange={handleChange}
                     ></textarea>
@@ -76,9 +71,8 @@ const AddModal = ({ open, setOpen }) => {
                     </div>
                 </div>
                 <div className='flex justify-between items-center'>
-                    {/* <button className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'><DeleteOutlinedIcon /></button> */}
-                    <button onClick={onClose} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'>Close</button>
-                    <button onClick={handleSubmit} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'>Add Note</button>
+                    <button onClick={onClose} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all dark:bg-black dark:hover:bg-gray-900'>Close</button>
+                    <button onClick={handleSubmit} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all dark:bg-black dark:hover:bg-gray-900'>Add Note</button>
                 </div>
             </div>
         </div>

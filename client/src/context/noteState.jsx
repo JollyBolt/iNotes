@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import noteContext from "./noteContext";
 import axios from 'axios'
 import { toast } from 'react-toastify';
@@ -8,10 +8,13 @@ const NoteState = (props) => {
   
   const [notes, setNotes] = useState([]);
   
+  // useEffect(()=>{
+  //   getAllNotes()
+  // },[])
+
   //API Calls to get all notes
   const getAllNotes= async ()=>{
     try {
-      // console.log(import.meta.env.VITE_URL)
       const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/notes/fetchallnotes`,{
         headers:{
           "auth-token": localStorage.getItem('token')
@@ -45,8 +48,6 @@ const NoteState = (props) => {
     }
     getAllNotes()
   }
-
-
 
   //delete a note
   const deleteNote = async (id) => {

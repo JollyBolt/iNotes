@@ -22,11 +22,11 @@ const NoteItem = ({ note }) => {
 
     return (
         <div className='m-1'>
-            <div className='group p-4 border w-52 shadow-md max-h-86 rounded-lg bg-white '>
+            <div className='group p-4 border-t dark:border  hover:scale-[1.02] ease-in-out transition-all max-h-86 rounded-[10px] shadow-md dark:border-seperator  bg-white dark:bg-black'>
                 <div onClick={() => setOpen(curr => !curr)} className='cursor-pointer'>
                     <div className='flex justify-between items-center'>
                         <p className='text-2xl font-bold overflow-hidden '>{note.title}</p>
-                        <button onClick={handlePin} className='hover:bg-gray-200 transition-all rounded-md p-1'>
+                        <button onClick={handlePin} className='hover:bg-gray-200 dark:hover:bg-seperator transition-all rounded-md p-1'>
                         {
                             note.pinned
                             ?<PushPinIcon/>
@@ -38,7 +38,11 @@ const NoteItem = ({ note }) => {
                     <p className='mt-3 max-h-[12.5rem] overflow-hidden text-sm whitespace-pre-wrap '>{note.description}</p>
                     {note.description.length > 206 ? "..." : ""}
                 </div>
-                <div className='flex justify-end'>
+                
+                <div className='flex justify-between'>
+                    <div className=' pt-6'>
+                        <p className='text-xs align-bottom'>{(note.date).split('T')[0]}</p>
+                    </div>
                     <button onClick={handleDelete} className='opacity-0 rounded-lg transition-all p-1 group-hover:opacity-100 group-hover:bg-slate-100'>
                         <DeleteOutlinedIcon />
                     </button>

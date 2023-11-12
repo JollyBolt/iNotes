@@ -37,22 +37,22 @@ const Modal = ({ note, open, setOpen }) => {
     };
 
     return (
-        <div onClick={onClose} className={`fixed inset-0 flex justify-center items-center transition-colors z-[100] ${open ? "bg-black/40" : "invisible"}`}>
+        <div onClick={onClose} className={`fixed inset-0 flex justify-center items-center transition-colors z-[100] ${open ? "bg-black/60" : "invisible"}`}>
             <div
                 onClick={e => e.stopPropagation()}
-                className={`bg-white rounded-xl shadow transition-all min-w-[50%] p-6 ${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`} >
+                className={`bg-white dark:bg-black dark:border-white dark:border-2 rounded-xl shadow-lg transition-all min-w-[50%] p-6 ${open ? "scale-100 opacity-100" : "scale-0 opacity-0"}`} >
                 <div className='flex flex-col p-3'>
                     <div className='flex items-center justify-between mb-3'>
                         <input
                             type="text"
                             name='title'
                             placeholder='Title...'
-                            className='focus:outline-none p-1 text-2xl'
+                            className='focus:outline-none p-1 text-2xl dark:bg-black w-full mr-2 '
                             value={newNote.title}
                             onChange={handleChange}
                         />
-                        <button onClick={() => {console.log(newNote)
-                         setNewNote((newNote)=>({...newNote,pinned:!newNote.pinned}))}} className='bg-gray-100 p-1 rounded-md  hover:bg-gray-300 transition-all'>{
+                        <button onClick={() => setNewNote((newNote)=>({...newNote,pinned:!newNote.pinned}))}
+                         className='bg-gray-100 dark:bg-black dark:hover:bg-gray-900 p-1 rounded-md  hover:bg-gray-900 transition-all'>{
                             newNote.pinned
                                 ? <PushPinIcon />
                                 : <PushPinOutlinedIcon />
@@ -63,7 +63,7 @@ const Modal = ({ note, open, setOpen }) => {
                         id="" cols="30"
                         rows="10"
                         placeholder='Take a note...'
-                        className='p-1 focus:outline-none'
+                        className='p-1 focus:outline-none dark:bg-black'
                         value={newNote.description}
                         onChange={handleChange}
                     ></textarea>
@@ -79,8 +79,8 @@ const Modal = ({ note, open, setOpen }) => {
                     </div>
                 </div>
                 <div className='flex justify-between items-center'>
-                    <button onClick={handleDelete} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'><DeleteOutlinedIcon /></button>
-                    <button onClick={onClose} className='bg-gray-100 p-2 rounded-md hover:bg-gray-300 transition-all'>Close</button>
+                    <button onClick={handleDelete} className='bg-gray-100 p-2   rounded-md hover:bg-gray-300 transition-all dark:bg-black dark:hover:bg-gray-900'><DeleteOutlinedIcon /></button>
+                    <button onClick={onClose} className='bg-gray-100 dark:bg-black p-2 rounded-md hover:bg-gray-300 transition-all dark:hover:bg-gray-900'>Close</button>
                 </div>
             </div>
         </div>

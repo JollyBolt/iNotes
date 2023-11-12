@@ -6,11 +6,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser') 
 
-const JWT_SECRET = "randomsignature"
+const JWT_SECRET = process.env.SECRET
 
 //Route 1: Create a user using POST "/api/auth/createuser". No login reqd
 router.post('/createuser',
-    body('name').isLength({min:3}),
+    body('firstName').isLength({min:3}),
+    body('lastName').isLength({min:2}),
     body('email').isEmail(),
     body('password').isLength({min:5})
 ,async (req,res) =>{
@@ -30,7 +31,8 @@ router.post('/createuser',
         const secPass =await bcrypt.hash(req.body.password,salt)
 
         user = await User.create({
-            name: req.body.name,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,      
             password: secPass,
         })
@@ -87,14 +89,15 @@ router.post('/login',
 //Route 3:Get login user details using Post "/api/auth/getuser". Login reqd
 router.post('/getuser',fetchuser,async (req,res)=>{
     const errors = validationResult(req);
+    let success=false
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success,errors: errors.array() });
     }
-    const {email,password} = req.body
+    // const {email,password} = req.body
     try {
         const userId = req.user.id
         const user = await User.findById(userId)
-        res.send(user)
+        res.send({success:true,user})
     } catch (error) {
         console.error(error.message)
         res.status(500).send("Internal Server Error")

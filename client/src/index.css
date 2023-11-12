@@ -13,6 +13,9 @@ i{
 @layer components{
     .btn{
         @apply
-          rounded-md text-xl p-[0.7rem]   hover:ring-1
+          rounded-md text-xl p-[0.7rem] hover:ring-1
+    }
+    .dark{
+        @apply text-white
     }
 }
