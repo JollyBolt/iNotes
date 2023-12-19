@@ -9,7 +9,8 @@ const port = process.env.PORT
 
 app.use(express.json())
 app.use(cors({
-  origin:['https://inotes-frontend-iota.vercel.app/','https://inotes-frontend-322jl35f4-ishan-sens-projects.vercel.app/'],
+  origin:['*'],
+  // origin:['https://inotes-frontend-iota.vercel.app/','https://inotes-frontend-322jl35f4-ishan-sens-projects.vercel.app/'],
   methods:["GET","POST","PUT","DELETE"],
   credentials:true
 }))
