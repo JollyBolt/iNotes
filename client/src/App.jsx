@@ -11,7 +11,7 @@ import PersonalNotes from './components/PersonalNotes'
 import WorkNotes from './components/WorkNotes'
 import AllNotes from './components/AllNotes'
 import { ColorState } from './context/ColorContext'
-import { useContext,useEffect } from 'react'
+import { useContext } from 'react'
 import userContext from './context/userContext'
 
 

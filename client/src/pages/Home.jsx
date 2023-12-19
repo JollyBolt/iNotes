@@ -14,7 +14,7 @@ const Home = () => {
     }, [])
 
     return (
-            <div className='min-h-[calc(100vh-4rem)] h-[100vh-4rem] w-full ml-[60px] lg:ml-0 pl-4 md:px-4  dark:bg-black overflow-y-scroll flex flex-col mt-[4rem]'>
+            <div className='min-h-[calc(100vh-4rem)] h-[100vh-4rem] w-full sm:ml-[60px] lg:ml-0 sm:pl-4 md:px-4  dark:bg-black overflow-y-scroll flex flex-col mt-[4rem]'>
                 <div className='flex my-4 justify-between '>
                     <Search searchText={searchText} setSearchText={setSearchText} />
                 </div>

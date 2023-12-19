@@ -10,14 +10,18 @@ const Search = ({searchText,setSearchText}) => {
 
     return (
         <>
-            <div className='shadow-lg mb-6 rounded-md w-[95%] sm:w-[80%] m-auto border-2 p-1 px-3 bg-white flex justify-between dark:bg-black dark:border-seperator'>
+            <div className='shadow-lg w-[95%] sm:w-[80%] m-auto   bg-white flex items-center justify-between dark:bg-black '>
+            <div className='py-4 px-3 sm:flex-1 h-full overflow-hidden border-2 dark:border-seperator rounded-md rounded-r-none'>
                 <input 
-                className="w-[50%] sm:flex-1 sm:p-2 focus:outline-none dark:bg-black"  
+                className="w-[50%] sm:w-full  focus:outline-none dark:bg-black text-xs sm:text-sm md:text-lg"  
                 placeholder="Search..."  
                 value={searchText} 
                 onChange={(e)=>setSearchText(e.target.value)} />
+            </div>
+            <div className={`border-2 border-${accent}-800 rounded-r-md overflow-hidden`}>
+                <button onClick={() => setOpen(curr => !curr)} className={`bg-${accent}-800  font-medium px-2 py-4 text-white dark:text-white hover:ring-white text-xs sm:text-sm md:text-lg h-full rounded-l-none  hover:bg-${accent}-900 `} >Take a note</button>
+            </div>
                 {/* <button onClick={() => setOpen(curr => !curr)} className='btn bg-black dark:bg-white dark:text-black text-white p-2 my-2 hover:ring-white text-sm md:text-lg rounded-lg hover:bg-slate-900' >Take a note</button> */}
-                <button onClick={() => setOpen(curr => !curr)} className={`btn bg-gradient-to-b from-${accent}-400 to-${accent}-700 dark:from-${accent}-200 dark:to-${accent}-700 font-extrabold p-2 my-2 text-white dark:text-black hover:ring-white text-xs sm:text-sm md:text-lg rounded-lg hover:bg-slate-900`} >Take a note</button>
                 <AddModal open={open} setOpen={setOpen}/>
             </div>
         </>

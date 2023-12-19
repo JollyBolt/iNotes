@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react'
+import React, { useContext, useState } from 'react'
 import noteContext from '../context/noteContext'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import PushPinIcon from '@mui/icons-material/PushPin';
@@ -6,9 +6,9 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import Modal from './Modal/Modal';
 
 const NoteItem = ({ note }) => {
-    const { deleteNote, editNote,notify } = useContext(noteContext)
+    const { deleteNote, editNote, notify } = useContext(noteContext)
     const [open, setOpen] = useState(false)
-    
+
     const handleDelete = (e) => {
         e.stopPropagation()
         deleteNote(note._id)
@@ -27,18 +27,22 @@ const NoteItem = ({ note }) => {
                     <div className='flex justify-between items-center'>
                         <p className='text-2xl font-bold overflow-hidden '>{note.title}</p>
                         <button onClick={handlePin} className='hover:bg-gray-200 dark:hover:bg-seperator transition-all rounded-md p-1'>
-                        {
-                            note.pinned
-                            ?<PushPinIcon/>
-                            :<PushPinOutlinedIcon />
-                        }
+                            {
+                                note.pinned
+                                    ? <PushPinIcon />
+                                    : <PushPinOutlinedIcon />
+                            }
                         </button>
                     </div>
-                    <span className={`text-xs ${note.tag==="personal"?"bg-purple-800":"bg-blue-800"}  p-1 rounded-lg text-white`}>{note.tag}</span>
-                    <p className='mt-3 max-h-[12.5rem] overflow-hidden text-sm whitespace-pre-wrap '>{note.description}</p>
-                    {note.description.length > 206 ? "..." : ""}
+                    <span className={`text-xs ${note.tag === "personal" ? "bg-purple-800" : "bg-blue-800"}  p-1 px-2 rounded-lg capitalize text-white`}>{note.tag}</span>
+                    <p className='mt-3 max-h-[12.5rem] overflow-hidden text-sm whitespace-pre-wrap '>
+                    {note.description.length > 205 ?
+                        `${note.description.substring(0, 205)}...` : note.description
+                    }
+                    </p>
+                    {/* {note.description.length > 206 ? "..." : ""} */}
                 </div>
-                
+
                 <div className='flex justify-between'>
                     <div className=' pt-6'>
                         <p className='text-xs align-bottom'>{(note.date).split('T')[0]}</p>
