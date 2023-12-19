@@ -1,10 +1,10 @@
 {
-  "name": "inotebook",
+  "name": "inotes-backend",
   "version": "1.0.0",
   "description": "Backend for iNotes",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
