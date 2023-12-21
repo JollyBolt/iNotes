@@ -13,7 +13,7 @@ const Modal = ({ note, open, setOpen }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(newNote)
+        // console.log(newNote)
         setNewNote({
             ...newNote,
             [name]: value
@@ -68,15 +68,10 @@ const Modal = ({ note, open, setOpen }) => {
                         onChange={handleChange}
                     ></textarea>
                     <div className='flex gap-10 justify-center'>
-                        <div>
-                            <input type="radio" name="tag" id="personal" className='mx-1' onChange={handleChange} value="personal" checked={note.tag==="personal"}/>
-                            <label htmlFor="personal">Personal</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="tag" id="work" className='mx-1' onChange={handleChange} value="work" checked={note.tag==="work"}/>
-                            <label htmlFor="work">Work</label>
-                        </div>
+                        <button onClick={()=>setNewNote({...newNote,tag:"personal"})} className={`text-white bg-purple-800 px-2 py-1 rounded-lg ${newNote.tag === "personal"?'ring-2 ring-offset-4 ring-black  dark:ring-white':''}`}>Personal</button>
+                        <button onClick={()=>setNewNote({...newNote,tag:"work"})} className={`text-white bg-blue-800 px-2 py-1 rounded-lg ${newNote.tag === "work"?'ring-2 ring-offset-4 ring-black dark:ring-white':''}`} >Work</button>
                     </div>
+                    <div></div>
                 </div>
                 <div className='flex justify-between items-center'>
                     <button onClick={handleDelete} className='bg-gray-100 p-2   rounded-md hover:bg-gray-300 transition-all dark:bg-black dark:hover:bg-gray-900'><DeleteOutlinedIcon /></button>

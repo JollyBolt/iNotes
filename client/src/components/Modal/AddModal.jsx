@@ -40,7 +40,7 @@ const AddModal = ({ open, setOpen }) => {
                             type="text"
                             name='title'
                             placeholder='Title...'
-                            className='focus:outline-none p-1 text-2xl dark:bg-black w-full ml-2'
+                            className='focus:outline-none p-1 text-2xl dark:bg-black w-full '
                             value={newNote.title}
                             onChange={handleChange}
                         />
@@ -60,14 +60,8 @@ const AddModal = ({ open, setOpen }) => {
                         onChange={handleChange}
                     ></textarea>
                     <div className='flex gap-10 justify-center'>
-                        <div>
-                            <input type="radio" name="tag" id="personal" className='mx-1' onChange={handleChange} value="personal" />
-                            <label htmlFor="personal">Personal</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="tag" id="work" className='mx-1' onChange={handleChange} value="work" />
-                            <label htmlFor="work">Work</label>
-                        </div>
+                        <button onClick={()=>setNewNote({...newNote,tag:"personal"})} className={`text-white bg-purple-800 px-2 py-1 rounded-lg ${newNote.tag === "personal"?'ring-2 ring-offset-4 ring-black  dark:ring-white':''}`}>Personal</button>
+                        <button onClick={()=>setNewNote({...newNote,tag:"work"})} className={`text-white bg-blue-800 px-2 py-1 rounded-lg ${newNote.tag === "work"?'ring-2 ring-offset-4 ring-white dark:ring-white':''}`} >Work</button>
                     </div>
                 </div>
                 <div className='flex justify-between items-center'>
