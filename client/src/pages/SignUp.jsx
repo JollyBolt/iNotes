@@ -8,10 +8,14 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import userContext from '../context/userContext';
+import { Spinner } from "@material-tailwind/react";
+
 
 const SignUp = () => {
   const [formState, setFormState] = useState({})
   const { handleUser } = useContext(userContext)
+  const [errorMsg, setErrorMsg] = useState('')
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -21,8 +25,8 @@ const SignUp = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formState)
     try {
+      setLoading(true)
       const { data } = await axios.post(`${import.meta.env.VITE_URL}/api/auth/createuser`, {
         "firstName": formState.firstName,
         "lastName": formState.lastName,
@@ -38,17 +42,34 @@ const SignUp = () => {
         localStorage.setItem("token", data.authToken)
         localStorage.setItem("user", JSON.stringify(data.user))
         handleUser()
-        // notify(`Hello, ${data.user.name}`, "top-center", 1500)
+        setLoading(false)
+        setErrorMsg('')
         navigate('/')
       }
+      else {
+        setErrorMsg(data.error)
+        console.log(errorMsg)
+        setLoading(false)
+      }
     } catch (error) {
-      console.log(error)
+      setErrorMsg(error.response.data)
+      setLoading(false)
     }
   }
   return (
     <>
       <div className=' flex h-screen'>
         <Card color="white" shadow={false} className='border m-auto p-8 shadow-card dark:shadow-none'>
+          {
+            loading && (
+              <div className='inset-0 absolute flex justify-center items-center bg-black/40 z-10 '>
+                <div className='bg-white flex flex-col h-32 w-32 z-50 justify-center items-center rounded-xl gap-3'>
+                  <Spinner className="h-12 w-12" />
+                  <span className='uppercase font-bold'>Loading..</span>
+                </div>
+              </div>
+            )
+          }
           <Typography variant="h4" color="blue-gray">
             Sign Up
           </Typography>
@@ -62,7 +83,15 @@ const SignUp = () => {
               <Input size="lg" label="Email" name='email' value={formState.email} onChange={handleChange} />
               <Input type="password" size="lg" label="Password" name='password' value={formState.password} onChange={handleChange} />
             </div>
-            {/*  */}
+            {
+              errorMsg !== ''
+                ? <>
+                  <div className='text-red-700 text-center bg-red-100 border border-red-700 p-2 font-extrabold rounded-lg'>
+                    {errorMsg}
+                  </div>
+                </>
+                : ""
+            }
             <Button className="mt-6" fullWidth onClick={handleSubmit}>
               Register
             </Button>
