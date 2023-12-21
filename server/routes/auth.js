@@ -24,10 +24,10 @@ router.post('/createuser',
     try{
         let user = await User.findOne({email:req.body.email})
         if(user){
-            return res.status(400).json({success,error:"Sorry, a user with this email already exists"})
+            return res.status(200).json({success,error:"Sorry, a user with this email already exists"})
         }
         
-        const salt =await bcrypt.genSalt(10)
+        const salt =await bcrypt.genSalt(5)
         const secPass =await bcrypt.hash(req.body.password,salt)
 
         user = await User.create({
@@ -65,11 +65,11 @@ router.post('/login',
     try {
         const user = await User.findOne({email:email})
         if(!user){
-            return res.status(400).json({success,error:"Wrong Credentials"})
+            return res.status(200).json({success,error:"Email not Found!"})
         }
         const passwordCompare = await bcrypt.compare(password, user.password)
         if(!passwordCompare){
-            return res.status(400).json({success,error:"Wrong Password"})
+            return res.status(200).json({success,error:"Wrong Password"})
         }
         const data ={
             user:{
@@ -93,7 +93,6 @@ router.post('/getuser',fetchuser,async (req,res)=>{
     if (!errors.isEmpty()) {
         return res.status(400).json({ success,errors: errors.array() });
     }
-    // const {email,password} = req.body
     try {
         const userId = req.user.id
         const user = await User.findById(userId)
