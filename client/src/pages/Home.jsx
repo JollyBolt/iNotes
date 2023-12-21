@@ -22,7 +22,7 @@ const Home = () => {
                 {
                     notes.length === 0
                         ? <div className='flex  justify-center pt-16'>
-                            <span className='text-5xl font-black text-gray-600'>
+                            <span className='text-3xl sm:text-5xl font-black text-gray-600 text-center'>
                                 What's on your mind....
                             </span>
                         </div>
