@@ -11,9 +11,9 @@ const Search = ({searchText,setSearchText}) => {
     return (
         <>
             <div className='shadow-lg w-[95%] sm:w-[80%] m-auto   bg-white flex items-center justify-between dark:bg-black '>
-            <div className='py-4 px-3 sm:flex-1 h-full overflow-hidden border-2 dark:border-seperator rounded-md rounded-r-none'>
+            <div className='py-4 px-3 flex-1 h-full overflow-hidden border-2 dark:border-seperator rounded-md rounded-r-none text-xs sm:text-sm md:text-lg'>
                 <input 
-                className="w-[50%] sm:w-full  focus:outline-none dark:bg-black text-xs sm:text-sm md:text-lg"  
+                className="w-full  focus:outline-none dark:bg-black text-xs sm:text-sm md:text-lg"  
                 placeholder="Search..."  
                 value={searchText} 
                 onChange={(e)=>setSearchText(e.target.value)} />
