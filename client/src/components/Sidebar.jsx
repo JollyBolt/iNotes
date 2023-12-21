@@ -45,7 +45,7 @@ const Sidebar = ({expanded}) => {
     let location = useLocation();
     return (
         <div>
-        <div className={`h-[calc(100vh-4rem)] fixed lg:sticky ${expanded?"left-0":"-left-20" }  sm:left-0 top-[4rem] z-[40]`}>
+        <div className={`h-[calc(100dvh-4rem)] fixed lg:sticky ${expanded?"left-0":"-left-20" }  sm:left-0 top-[4rem] z-[40]`}>
             <nav className={`h-full flex flex-col bg-white dark:bg-black border-r shadow-sm dark:border-seperator  `}>
                 <ul className="flex-1  p-3">
                     {

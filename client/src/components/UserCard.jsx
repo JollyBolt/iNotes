@@ -5,7 +5,7 @@ const UserCard = () => {
   const { notes } = useContext(noteContext);
 
   return (
-    <div className="bg-yellow-400 h-[calc(100vh-4rem)] fixed w-[20vw] top-[4rem] right-0 p-3">
+    <div className="bg-yellow-400 h-[calc(100dvh-4rem)] fixed w-[20vw] top-[4rem] right-0 p-3">
         <div className="border rounded-lg flex flex-col items-center p-3">
             <div className="font-extrabold text-8xl bg-red-600 rounded-full w-28 h-28 flex items-center justify-center border-4">
               <span>J</span>

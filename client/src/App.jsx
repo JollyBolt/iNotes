@@ -23,7 +23,7 @@ const App = () => {
     createRoutesFromElements(
       <>
         <Route path='/' element={<RootLayout />}>
-          <Route path='/' element={user?<Home />:<Navigate to='/signup'/>}>
+          <Route path='/' element={user?<Home />:<Navigate to='/login'/>}>
             <Route path='/' element={<AllNotes />}></Route>
             <Route path='/personal' element={<PersonalNotes />}></Route>
             <Route path='/work' element={<WorkNotes />}></Route>
