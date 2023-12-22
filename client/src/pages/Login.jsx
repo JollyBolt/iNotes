@@ -101,7 +101,7 @@ const Login = () => {
                 Sign Up
               </a>
             </Typography>
-          </form>
+          
           <div className='text-center'>
 
             Here to check out the site:&nbsp; 
@@ -113,6 +113,10 @@ const Login = () => {
               Click Here
             </button>
           </div>
+          <div className='text-center text-xs mt-5'>
+            Note: The server is hosted on free plan of render.com which spins down on inactivity. So logging in the 1st time might take upto <b>30s</b>. Please bear with it. Thank you for your cooperation. 
+          </div>
+          </form>
         </Card>
       </div>
     </>
