@@ -48,7 +48,6 @@ const SignUp = () => {
       }
       else {
         setErrorMsg(data.error)
-        console.log(errorMsg)
         setLoading(false)
       }
     } catch (error) {

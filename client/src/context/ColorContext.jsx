@@ -22,7 +22,7 @@ export const ColorState = (props) =>{
 
     const [theme,setTheme] = useState(localStorage.getItem('color-theme'))
     const [accent,setAccent] = useState(theme==='light'?'blue':'gray')
-    // console.log(accent)
+
 
     const handleDarkMode = () =>{
         if (localStorage.getItem('color-theme')) {

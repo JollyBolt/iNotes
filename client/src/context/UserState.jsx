@@ -5,7 +5,7 @@ import userContext from './userContext'
 const UserState = (props) => {
     const [user,setUser] = useState(null)
     
-    const handleUser = async() =>{
+    const handleUser = () =>{
         setUser(JSON.parse(localStorage.getItem('user')))  
     }
         

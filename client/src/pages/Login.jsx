@@ -43,20 +43,18 @@ const Login = () => {
       if (data.success) {
         localStorage.setItem("token", data.authToken);
         localStorage.setItem("user", JSON.stringify(data.user));
-        await handleUser(data.user)
+        handleUser(data.user)
         setLoading(false)
-        setErrorMsg('')
         navigate('/')
+        setErrorMsg('')
       }
       else {
         setErrorMsg(data.error)
-        console.log(errorMsg)
         setLoading(false)
       }
     } catch (error) {
       setErrorMsg(error.response.data)
       setLoading(false)
-      // console.log(error.response.data)
     }
   }
   return (

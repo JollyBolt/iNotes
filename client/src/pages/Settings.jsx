@@ -6,7 +6,6 @@ import Footer from '../components/Footer'
 
 const Settings = () => {
   const {accentColors} = useContext(colorContext)
-  // console.log(accentColors)
   const user = JSON.parse(localStorage.getItem('user'))
   
   return (
