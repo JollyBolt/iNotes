@@ -8,7 +8,7 @@ const fetchuser = require("../middleware/fetchuser");
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
   try {
     const notes = await Notes.find({ user: req.user.id });
-    res.send(notes);
+    res.status(200).send(notes);
   } catch (error) {
     console.error(error.message);
       res.status(500).send("Some error occured");
@@ -58,7 +58,7 @@ router.put("/updatenote/:id",fetchuser, async (req, res) => {
       {newNote.pinned = pinned}
       
       note = await Notes.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true})
-      res.json(note)
+      res.status(200).send("Note Edited Successfully")
       
     } catch (error) {
       console.error(error.message);
@@ -79,7 +79,7 @@ router.delete("/deletenote/:id",fetchuser, async (req, res) => {
         return res.status(401).send("Not Allowed")
       }
       note = await Notes.findByIdAndDelete(req.params.id)
-      res.json({"Success": "Note has been successfully deleted."})
+      res.status(200).json({"Success": "Note has been successfully deleted."})
       
     } catch (error) {
       console.error(error.message);
