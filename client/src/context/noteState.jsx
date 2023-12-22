@@ -7,10 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const NoteState = (props) => {
   
   const [notes, setNotes] = useState([]);
-  
-  // useEffect(()=>{
-  //   getAllNotes()
-  // },[])
 
   //API Calls to get all notes
   const getAllNotes= async ()=>{
@@ -22,14 +18,13 @@ const NoteState = (props) => {
       })
       setNotes(data)
     } catch (error) {
-      console.log(error)
+      notifyError(error.response.data,"top-center")
     }
   }
 
   //add a note
   const addNote = async (title, description, tag, pinned) => {
     try {
-      // console.log(title, description, tag, pinned)
       const response = await axios.post(`${import.meta.env.VITE_URL}/api/notes/addnote`,{
         "title":title,
         "description":description,
@@ -42,12 +37,14 @@ const NoteState = (props) => {
           "Content-Type": "application/json"
         }
       })
+      setNotes([...notes,{title:title,description:description,tag:tag,pinned:pinned,date:new Date().toISOString()}])
+      notify("Note Added", "top-center");
       
     } catch (error) {
-      console.log(error.response)
+      notifyError(error.response.data,"top-center")
     }
-    setNotes([...notes,{title:title,description:description,tag:tag,pinned:pinned,date:new Date().toISOString()}])
-    getAllNotes()
+    
+
   }
 
   //delete a note
@@ -59,10 +56,11 @@ const NoteState = (props) => {
           "Content-Type": "application/json"
         }
       })
+      setNotes(notes.filter((note) => note._id !== id ))
+      notify("Note Deleted", "bottom-right")
     } catch (error) {
-      console.log(error.response)
+      notifyError(error.response.data,"top-center")
     }
-    setNotes(notes.filter((note) => note._id !== id ))
   }
 
 
@@ -81,50 +79,41 @@ const NoteState = (props) => {
           "Content-Type": "application/json"
         }
       })
-    } catch (error) {
-      console.log(error.response)
-    }
-    // const newNotes = notes.map((note)=>{
-    //   if(note.id===id){
-    //     return {
-    //       ...note,
-    //       title:title,
-    //       description:description,
-    //       tag:tag,
-    //       pinned:pinned
-    //     }
-    //   }
-    //   else return note
-    // })
-    setNotes(current => current.map(note=>{
-      if(note._id===id){
-        return {
-          ...note,
-          title:title,
-          description:description,
-          tag:tag,
-          pinned:pinned
+      setNotes(current => current.map(note=>{
+        if(note._id===id){
+          return {
+            ...note,
+            title:title,
+            description:description,
+            tag:tag,
+            pinned:pinned
+          }
         }
-      }
-      return note
-    }))
-
-    // getAllNotes()
-    //Final notes are updating on frontend through api call
-    //TODO: update notes on frontend without api call
+        return note
+      }))
+    } catch (error) {
+      notifyError(error.response.data,"top-center")
+    }
   }
 
-  const notify = (msg, position, autoClose) => {
+  const notify = (msg, position) => {
     toast.success(msg, {
       position: position,
-      autoClose: 1000,
-      theme: document.documentElement.getAttribute('data-bs-theme')
+      autoClose: 500,
+      theme: localStorage.getItem('color-theme')
+    })
+  }
+  const notifyError = (msg, position) => {
+    toast.error(msg, {
+      position: position,
+      autoClose: 500,
+      theme: localStorage.getItem('color-theme')
     })
   }
 
 
   return (
-    <noteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote,getAllNotes,notify }}>
+    <noteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote,getAllNotes,notify,notifyError }}>
       {props.children}
     </noteContext.Provider>
   )
