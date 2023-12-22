@@ -12,7 +12,6 @@ const NoteItem = ({ note }) => {
     const handleDelete = (e) => {
         e.stopPropagation()
         deleteNote(note._id)
-        notify("Note Deleted", "bottom-right", 1500)
     }
 
     const handlePin = (e) => {
