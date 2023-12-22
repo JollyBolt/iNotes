@@ -25,7 +25,6 @@ const AddModal = ({ open, setOpen }) => {
         addNote(newNote.title, newNote.description, newNote.tag, pinned)
         setNewNote({ title: "", description: "", tag: "personal" })
         setPinned(false)
-        notify("Note Added", "top-center", 1500);
         setOpen(false)
     };
 
