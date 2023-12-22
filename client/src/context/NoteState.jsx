@@ -25,7 +25,7 @@ const NoteState = (props) => {
   //add a note
   const addNote = async (title, description, tag, pinned) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_URL}/api/notes/addnote`,{
+      const {data}= await axios.post(`${import.meta.env.VITE_URL}/api/notes/addnote`,{
         "title":title,
         "description":description,
         "tag":tag,
@@ -37,14 +37,11 @@ const NoteState = (props) => {
           "Content-Type": "application/json"
         }
       })
-      setNotes([...notes,{title:title,description:description,tag:tag,pinned:pinned,date:new Date().toISOString()}])
+      setNotes([...notes,data])
       notify("Note Added", "top-center");
-      
     } catch (error) {
       notifyError(error.response.data,"top-center")
     }
-    
-
   }
 
   //delete a note
