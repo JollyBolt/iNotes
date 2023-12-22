@@ -46,6 +46,7 @@ const NoteState = (props) => {
     } catch (error) {
       console.log(error.response)
     }
+    setNotes([...notes,{title:title,description:description,tag:tag,pinned:pinned,date:new Date().toISOString()}])
     getAllNotes()
   }
 
@@ -83,7 +84,33 @@ const NoteState = (props) => {
     } catch (error) {
       console.log(error.response)
     }
-    getAllNotes()//Final notes are updating on frontend through api call
+    // const newNotes = notes.map((note)=>{
+    //   if(note.id===id){
+    //     return {
+    //       ...note,
+    //       title:title,
+    //       description:description,
+    //       tag:tag,
+    //       pinned:pinned
+    //     }
+    //   }
+    //   else return note
+    // })
+    setNotes(current => current.map(note=>{
+      if(note._id===id){
+        return {
+          ...note,
+          title:title,
+          description:description,
+          tag:tag,
+          pinned:pinned
+        }
+      }
+      return note
+    }))
+
+    // getAllNotes()
+    //Final notes are updating on frontend through api call
     //TODO: update notes on frontend without api call
   }
 
