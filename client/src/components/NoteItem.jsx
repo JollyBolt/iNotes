@@ -40,7 +40,6 @@ const NoteItem = ({ note }) => {
                         `${note.description.substring(0, 205)}...` : note.description
                     }
                     </p>
-                    {/* {note.description.length > 206 ? "..." : ""} */}
                 </div>
 
                 <div className='flex justify-between'>
