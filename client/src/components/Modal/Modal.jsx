@@ -13,7 +13,6 @@ const Modal = ({ note, open, setOpen }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // console.log(newNote)
         setNewNote({
             ...newNote,
             [name]: value
@@ -23,7 +22,6 @@ const Modal = ({ note, open, setOpen }) => {
     const handleDelete = (e) => {
         e.stopPropagation()
         deleteNote(note._id)
-        notify("Note Deleted", "bottom-right", 1500)
         setOpen(false)
     }
 
