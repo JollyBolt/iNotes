@@ -106,6 +106,7 @@ const Login = () => {
 
             Here to check out the site:&nbsp; 
             <button 
+            type='button'
             onClick={()=>setFormState({
               email:'demo@gmail.com',
               password:'demodemo'
