@@ -100,9 +100,9 @@ const SignUp = () => {
                 Sign In
               </a>
             </Typography>
-          <div className='text-center text-xs mt-5'>
+          {/* <div className='text-center text-xs mt-5'>
             Note: The server is hosted on free plan of render.com which spins down on inactivity. So signing up the 1st time might take upto <b>30s</b>. Please bear with it. Thank you for your cooperation. 
-          </div>
+          </div> */}
           </form>
         </Card>
       </div>

@@ -5,7 +5,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer = () => {
     return (
-        <div className='w-[80%] mx-auto bg-white dark:bg-black dark:rounded-none dark:border-t dark:shadow-none mb-3 mt-5 shadow-card rounded-lg md:px-16 py-5 sm:p-5 flex flex-col sm:flex-row items-center-center sm:justify-between'>
+        <div className='w-[80%] mx-auto bg-white dark:bg-black  border-t-2 dark:border-seperator  mb-3 mt-5  md:px-16 py-5 sm:p-5 flex flex-col sm:flex-row items-center-center sm:justify-between'>
             <div className='flex justify-center'>
                 <span className='whitespace-break-spaces'>Made by </span>
                 <span className='font-black'>Ishan Sen.</span>
