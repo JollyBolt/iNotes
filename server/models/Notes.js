@@ -8,16 +8,16 @@ const NotesSchema = new Schema({
     },
     title:{
         type: String,
-        reqired: true
+        required: true
     },
     description:{
         type: String,
-        reqired: true,
+        required: true,
         unique: true
     },
     tag:{
         type: String,
-        reqired: true
+        required: true
     },
     pinned:{
         type: Boolean,

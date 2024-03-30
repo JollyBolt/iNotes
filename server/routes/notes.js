@@ -33,7 +33,7 @@ router.post("/addnote",fetchuser,
       const savedNote = await note.save();
       res.send(savedNote);
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
       res.status(500).send("Some error occured");
     }
   }
