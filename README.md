@@ -1,5 +1,5 @@
 ## Demo
-Check out the site [here](https://inotes-oyvc.onrender.com).
+Check out the site [here](https://inotes.ishansen.in/).
 <p align="center">
 <img height="250" src="https://github.com/JollyBolt/iNotes/assets/68071708/573812f9-b33b-4f1e-94ec-2214ef26901d" />
 </p>
